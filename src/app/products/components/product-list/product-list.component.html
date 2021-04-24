@@ -1,0 +1,19 @@
+<div>
+    ProductListComponent ->
+    <app-product></app-product>
+</div>
+
+<div>
+
+    <div>ProductListComponent -> ProductsService</div>
+    <br/>
+    <div>List of products from the service:</div>
+    
+    <div *ngFor ="let product of products;">
+        {{product.id}} - {{product.name}} - {{product.price}}
+        <button id="product.id" (click)="onAddInCart(product)">Cart: +</button> 
+        <button (click)="onRemoveFromCart(product)">Cart: -</button>
+    </div>
+
+    *****************************************************
+</div>
