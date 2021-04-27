@@ -11,23 +11,23 @@ export class CartService {
 
   constructor() { }
 
-  addInCart(product: ProductItem) {
-    
+  addInCart(product: ProductItem): void {
+
     this.productsInCart.push(product);
   }
 
-  removeFromCart(product: ProductItem) {
+  removeFromCart(product: ProductItem): void {
 
-    let index = this.productsInCart.indexOf(product);
-    
+    const index = this.productsInCart.indexOf(product);
+
     if (index > -1) {
       this.productsInCart.splice(index, 1);
     }
-    
+
   }
 
   getCartProducts(): Array<ProductItem>{
-    
+
     return this.productsInCart;
   }
 }

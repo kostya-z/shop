@@ -14,7 +14,7 @@ export class ProductListComponent implements OnInit {
   products: Array<ProductItem> | undefined;
 
   constructor(private productService: ProductsService,
-    private cartService: CartService) { 
+              private cartService: CartService) {
 
   }
 
@@ -22,13 +22,13 @@ export class ProductListComponent implements OnInit {
     this.products = this.productService.getProducts();
   }
 
-  onAddInCart(product: ProductItem) {
-    
+  onAddInCart(product: ProductItem): void {
+
     this.cartService.addInCart(product);
   }
 
-  onRemoveFromCart(product: ProductItem) {
-    
+  onRemoveFromCart(product: ProductItem): void {
+
     this.cartService.removeFromCart(product);
   }
 

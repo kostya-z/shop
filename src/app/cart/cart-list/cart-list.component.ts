@@ -10,18 +10,18 @@ import { CartService } from '../services/cart.service';
 })
 export class CartListComponent implements OnInit {
 
-  productsInCart: Array<ProductItem> =[];
+  productsInCart: Array<ProductItem> = [];
 
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
 
     this.productsInCart = this.cartService.getCartProducts();
-    this.productsInCart.length
+    // this.productsInCart.length
   }
 
   // addInCart(product: ProductItem): void {
-    
+
   //   this.cartService.addInCart(product);
 
   //   // console.log('cart count: ' + this.productsInCart.length);
