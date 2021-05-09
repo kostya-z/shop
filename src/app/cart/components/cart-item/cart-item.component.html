@@ -1,0 +1,29 @@
+<div appHighlight bold>
+    
+    <div class="panel panel-default"></div>
+  
+    <div class="panel-heading" >
+        
+        Product: Id: {{product?.id}}; Name: {{product?.name}}; 
+        Price: {{product?.price}}$; Q-ty: {{product?.quantity}}
+        
+        <button class="btn btn-primary"  
+                id="product.id" (click)="onIncreaseCartItem(product)"
+        >
+            +
+        </button>
+
+        <button class="btn btn-warning"
+                (click)="onDecreaseCartItem(product)"
+        >
+            -
+        </button>
+
+        <button class="btn btn-danger"
+                (click)="onRemoveFromCart(product)"
+        >
+            Remove
+        </button>
+    </div>
+
+</div>

@@ -1,0 +1,30 @@
+<div [ngStyle]="{'font-size':'13px', 'font-family':'Verdana', 'color':'blue'}">
+    CartListComponent ->
+</div>
+<br/>
+
+<div>
+    <div [ngClass]="{segoePrintFont:true}">
+        Q-ty: {{getQuantityCartProducts()}}; Sum: {{getSumCartProducts()}}
+    </div>
+    <br/>
+    <div >Cart products list:</div>
+    
+    <div *ngIf="productsInCart.length > 0; else elseBlock">
+       
+        <app-cart-item  
+                        *ngFor="let product of productsInCart;"
+                        [product]="product"
+                        (increaseProduct)="onIncreaseCartItem($event)"
+                        (decreaseProduct)="onDecreaseCartItem($event)"
+                        
+        >
+        </app-cart-item>
+
+    </div>
+    <ng-template #elseBlock>
+        <div> The cart is empty!</div>
+    </ng-template>
+    
+    *****************************************************
+</div>
