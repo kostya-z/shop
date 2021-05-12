@@ -9,10 +9,10 @@ import {CartCommunicatorService } from '../../services/cart-communicator.service
   styleUrls: ['./cart-item.component.css']
 })
 export class CartItemComponent implements OnInit {
-  
+
   @Input()
   product: CartItem | undefined;
-  
+
   @Output()
   increaseProduct: EventEmitter<CartItem> = new EventEmitter<CartItem>();
 
@@ -21,7 +21,7 @@ export class CartItemComponent implements OnInit {
 
   @Output()
   productToRemove: EventEmitter<CartItem> = new EventEmitter<CartItem>();
-  
+
   constructor(
     private cartCommunicatorService: CartCommunicatorService
   ) {}
@@ -30,28 +30,28 @@ export class CartItemComponent implements OnInit {
   }
 
   onIncreaseCartItem(product: CartItem | undefined): void {
-   
+
     this.increaseProduct.emit(product);
   }
 
   onDecreaseCartItem(product: CartItem | undefined): void {
-   
+
     this.decreaseProduct.emit(product);
   }
 
-  //emitter version
+  // emitter version
   // onRemoveFromCart(product: CartItem | undefined): void {
 
   //   this.productToRemove.emit(product);
   // }
 
-  //service push-strategy version
+  // service push-strategy version
   onRemoveFromCart(product: CartItem | undefined): void {
-    
+
     if (product !== undefined) {
       this.cartCommunicatorService.publishRemoveCartItem(product);
     }
-    
+
   }
 
 }

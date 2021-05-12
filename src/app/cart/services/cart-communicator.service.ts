@@ -9,10 +9,10 @@ import { CartItem } from '../models/cart.model';
 export class CartCommunicatorService {
 
   private removeCartItemChannel = new Subject<CartItem>();
-  
+
   public  removeCartItemChannel$ = this.removeCartItemChannel.asObservable();
-  
-  publishRemoveCartItem(cartItem: CartItem) {
+
+  publishRemoveCartItem(cartItem: CartItem): void {
     this.removeCartItemChannel.next(cartItem);
   }
 }

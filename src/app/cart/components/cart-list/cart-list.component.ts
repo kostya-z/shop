@@ -11,30 +11,30 @@ import {CartCommunicatorService } from '../../services/cart-communicator.service
   templateUrl: './cart-list.component.html',
   styleUrls: ['./cart-list.component.css']
 })
-export class CartListComponent implements OnInit {
+export class CartListComponent implements OnInit, OnDestroy {
 
   productsInCart: Array<CartItem> = [];
-  sumCartProducts: number = 0;
-  quantityCartProducts: number = 0;
+  sumCartProducts = 0;
+  quantityCartProducts = 0;
 
   private removeCartItemSubscription: Subscription | undefined;
 
-  constructor(private cartService: CartService, 
-              private cartCommunicatorService: CartCommunicatorService) 
+  constructor(private cartService: CartService,
+              private cartCommunicatorService: CartCommunicatorService)
   { }
 
   ngOnInit(): void {
 
     this.productsInCart = this.cartService.getCartProducts();
-    
-    //service push-strategy version
+
+    // service push-strategy version
     this.removeCartItemSubscription = this.cartCommunicatorService.removeCartItemChannel$.subscribe(
       data => this.onRemoveFromCart(data)
     );
   }
 
-  //service push-strategy version
-  ngOnDestroy() {
+  // service push-strategy version
+  ngOnDestroy(): void {
 
     if (this.removeCartItemSubscription !== undefined) {
       this.removeCartItemSubscription.unsubscribe();
@@ -42,12 +42,12 @@ export class CartListComponent implements OnInit {
   }
 
   onIncreaseCartItem(product: CartItem): void {
-    
+
     this.cartService.increaseCartItem(product);
   }
 
   onDecreaseCartItem(product: CartItem): void {
-    
+
     this.cartService.decreaseCartItem(product);
   }
 
@@ -57,7 +57,7 @@ export class CartListComponent implements OnInit {
   }
 
   getSumCartProducts(): number{
-    
+
     return this.cartService.getSumCartProducts();
   }
 

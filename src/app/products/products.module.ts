@@ -10,6 +10,6 @@ import { ProductListComponent } from './components/product-list/product-list.com
   imports: [
     CommonModule, MatTableModule
   ],
-  exports: [ProductComponent, ProductListComponent]
+  exports: [ProductListComponent]
 })
 export class ProductsModule { }
