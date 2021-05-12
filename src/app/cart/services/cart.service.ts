@@ -9,8 +9,8 @@ import { CartItem } from '../models/cart.model';
 export class CartService {
 
   private productsInCart: Array<CartItem> = [];
-  private sumCartProducts: number = 0;
-  private quantityCartProducts: number = 0;
+  private sumCartProducts = 0;
+  private quantityCartProducts = 0;
 
   constructor() { }
 
@@ -19,7 +19,7 @@ export class CartService {
     const index = this.productsInCart.findIndex(productInCart => productInCart.id === product.id);
 
     if (index < 0) {
-      
+
       const newCartItem = new CartItem(product.id, product.name, product.price, 1);
 
       this.productsInCart.push(newCartItem);
@@ -33,7 +33,7 @@ export class CartService {
   }
 
   increaseCartItem(product: CartItem): void {
-    
+
     const index = this.productsInCart.findIndex(productInCart => productInCart.id === product.id);
 
     if (index > -1) {
@@ -45,7 +45,7 @@ export class CartService {
   }
 
   decreaseCartItem(product: CartItem): void {
-    
+
     const index = this.productsInCart.findIndex(productInCart => productInCart.id === product.id);
 
     if (index > -1) {
@@ -89,10 +89,10 @@ export class CartService {
 
   private updateCart(): void {
 
-    this.sumCartProducts = this.productsInCart.reduce((sum: number, product: CartItem) => 
+    this.sumCartProducts = this.productsInCart.reduce((sum: number, product: CartItem) =>
                                                                             sum + product.price * product.quantity, 0);
 
-    this.quantityCartProducts = this.productsInCart.reduce((sum: number, product: CartItem) => 
+    this.quantityCartProducts = this.productsInCart.reduce((sum: number, product: CartItem) =>
                                                                             sum + product.quantity, 0);
   }
 }

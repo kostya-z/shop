@@ -8,7 +8,7 @@ import { FirstComponentComponent } from './first-component/first-component.compo
 // import { CartListComponent } from './cart/cart-list/cart-list.component';
 
 import { CartModule } from './cart/cart.module';
-import { ProductsModule } from  './products/products.module';
+import { ProductsModule } from './products/products.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 

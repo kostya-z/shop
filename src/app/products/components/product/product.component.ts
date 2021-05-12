@@ -8,9 +8,9 @@ import { ProductItem } from '../../models/product.model';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  
+
   @Input()
-  products: Array<ProductItem> =[];
+  products: Array<ProductItem> = [];
 
   @Output()
   productToBuy: EventEmitter<ProductItem> = new EventEmitter<ProductItem>();
@@ -18,7 +18,7 @@ export class ProductComponent implements OnInit {
   headers: string[] = ['id', 'name', 'price', 'actions'];
 
   ngOnInit(): void {
-    
+
   }
 
   onBuy(): void {
@@ -26,7 +26,7 @@ export class ProductComponent implements OnInit {
   }
 
   onAddInCart(product: ProductItem): void {
-   
+
     this.productToBuy.emit(product);
   }
 

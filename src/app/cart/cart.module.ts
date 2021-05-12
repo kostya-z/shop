@@ -12,6 +12,6 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     SharedModule
   ],
-  exports:[ CartListComponent, CartItemComponent ]
+  exports: [ CartListComponent ]
 })
 export class CartModule { }

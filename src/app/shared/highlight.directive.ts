@@ -5,23 +5,26 @@ import { Directive, HostListener, HostBinding } from '@angular/core';
 })
 export class HighlightDirective {
 
-  private backGroundColor = "";
+  private backGroundColor = '';
 
+  // tslint:disable-next-line: typedef
   @HostBinding('style.backgroundColor') get getBackgroundColor() {
-    
+
     return this.backGroundColor;
   }
 
-  @HostListener('mouseenter', ['$event']) 
+  @HostListener('mouseenter', ['$event'])
+  // tslint:disable-next-line: typedef
   onMouseEnter(event: Event) {
-    
-    this.backGroundColor = "gray";
+
+    this.backGroundColor = 'gray';
   }
 
-  @HostListener('mouseleave', ['$event']) 
+  @HostListener('mouseleave', ['$event'])
+  // tslint:disable-next-line: typedef
   onMouseLeave(event: Event) {
-   
-    this.backGroundColor = "";
+
+    this.backGroundColor = '';
   }
 
   // @HostListener('click')
