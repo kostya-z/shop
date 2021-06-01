@@ -10,6 +10,15 @@
     <br/>
     <div >Cart products list:</div>
     
+    <div *ngIf="!getIsEmptyCart()">
+        <button class="btn btn-danger"  
+                id="product.id" (click)="onClearCart()"
+                [disabled]="getIsEmptyCart()" 
+        >           
+            Clear
+        </button>
+    </div>
+
     <div *ngIf="productsInCart.length > 0; else elseBlock">
        
         <app-cart-item  

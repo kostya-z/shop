@@ -25,12 +25,16 @@ export class CartListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.productsInCart = this.cartService.getCartProducts();
+    this.productsInCart = this.cartService.getProducts();
 
     // service push-strategy version
     this.removeCartItemSubscription = this.cartCommunicatorService.removeCartItemChannel$.subscribe(
       data => this.onRemoveFromCart(data)
     );
+  }
+
+  ngDoCheck(): void {
+    this.productsInCart = this.cartService.getProducts();
   }
 
   // service push-strategy version
@@ -41,19 +45,24 @@ export class CartListComponent implements OnInit, OnDestroy {
     }
   }
 
+
   onIncreaseCartItem(product: CartItem): void {
 
-    this.cartService.increaseCartItem(product);
+    this.cartService.increaseQuantity(product);
   }
 
   onDecreaseCartItem(product: CartItem): void {
 
-    this.cartService.decreaseCartItem(product);
+    this.cartService.decreaseQuantity(product);
   }
 
   onRemoveFromCart(product: CartItem): void {
 
-    this.cartService.removeFromCart(product);
+    this.cartService.removeProduct(product);
+  }
+
+  onClearCart(): void {
+    this.cartService.removeAllProducts();
   }
 
   getSumCartProducts(): number{
@@ -64,6 +73,10 @@ export class CartListComponent implements OnInit, OnDestroy {
   getQuantityCartProducts(): number{
 
     return this.cartService.getQuantityCartProducts();
+  }
+
+  getIsEmptyCart(): boolean {
+    return this.cartService.isEmptyCart();
   }
 
 }

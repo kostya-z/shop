@@ -8,91 +8,132 @@ import { CartItem } from '../models/cart.model';
 })
 export class CartService {
 
-  private productsInCart: Array<CartItem> = [];
-  private sumCartProducts = 0;
-  private quantityCartProducts = 0;
+  private cartProducts : Array<CartItem> = [];
+  private totalSum = 0;
+  private totalQuantity  = 0;
 
   constructor() { }
 
-  addInCart(product: ProductItem): void {
+  addProduct(product: ProductItem, amount: number = 1): void {
 
-    const index = this.productsInCart.findIndex(productInCart => productInCart.id === product.id);
+    const cartItem = new CartItem(product.id, product.name, product.price, amount);
+
+    const index = this.cartProducts.findIndex(productInCart => productInCart.id === product.id);
 
     if (index < 0) {
 
-      const newCartItem = new CartItem(product.id, product.name, product.price, 1);
+      // const newCartItem = new CartItem(product.id, product.name, product.price, amount);
 
-      this.productsInCart.push(newCartItem);
+      // this.cartProducts.push(newCartItem);
+      this.cartProducts = [...this.cartProducts, cartItem];
 
     } else {
 
-      this.productsInCart[index].quantity ++;
+      // this.cartProducts [index].quantity ++;
+      this.changeQuantity(cartItem, amount);
     }
 
-    this.updateCart();
+    this.updateCartData();
   }
 
-  increaseCartItem(product: CartItem): void {
+  increaseQuantity(product: CartItem, amount: number = 1): void {
 
-    const index = this.productsInCart.findIndex(productInCart => productInCart.id === product.id);
+    // const index = this.cartProducts.findIndex(productInCart => productInCart.id === product.id);
+
+    // if (index > -1) {
+    //   this.cartProducts[index].quantity ++;
+
+    //   this.updateCart();
+    // }
+    this.changeQuantity(product, amount);
+
+  }
+
+  decreaseQuantity(product: CartItem, amount: number = -1): void {
+
+    // const index = this.cartProducts.findIndex(productInCart => productInCart.id === product.id);
+
+    // if (index > -1) {
+    //   this.cartProducts[index].quantity --;
+    // }
+
+    // if (this.cartProducts[index].quantity === 0) {
+
+    //   this.removeProduct(product);
+    // }
+
+    // this.updateCart();
+
+    this.changeQuantity(product, amount);
+  }
+
+  removeProduct(product: CartItem): void {
+
+    const index = this.cartProducts.findIndex(productInCart => productInCart.id === product.id);
 
     if (index > -1) {
-      this.productsInCart[index].quantity ++;
+      // this.cartProducts.splice(index, 1);
 
-      this.updateCart();
+      this.cartProducts = [...this.cartProducts.slice(0, index), ...this.cartProducts.slice(index + 1)];
+
+      this.updateCartData();
     }
 
   }
 
-  decreaseCartItem(product: CartItem): void {
+  getProducts(): Array<CartItem>{
 
-    const index = this.productsInCart.findIndex(productInCart => productInCart.id === product.id);
-
-    if (index > -1) {
-      this.productsInCart[index].quantity --;
-    }
-
-    if (this.productsInCart[index].quantity === 0) {
-
-      this.removeFromCart(product);
-    }
-
-    this.updateCart();
-  }
-
-  removeFromCart(product: CartItem): void {
-
-    const index = this.productsInCart.findIndex(productInCart => productInCart.id === product.id);
-
-    if (index > -1) {
-      this.productsInCart.splice(index, 1);
-
-      this.updateCart();
-    }
-
-  }
-
-  getCartProducts(): Array<CartItem>{
-
-    return this.productsInCart;
+    return this.cartProducts;
   }
 
   getSumCartProducts(): number{
 
-    return this.sumCartProducts;
+    return this.totalSum ;
   }
 
   getQuantityCartProducts(): number{
 
-    return this.quantityCartProducts;
+    return this.totalQuantity ;
   }
 
-  private updateCart(): void {
+  removeAllProducts(): void {
+    this.cartProducts = [];
 
-    this.sumCartProducts = this.productsInCart.reduce((sum: number, product: CartItem) =>
+    this.updateCartData();
+  }
+
+  isEmptyCart(): boolean {
+    return this.cartProducts.length === 0;
+  }
+
+  private changeQuantity(product: CartItem, amount: number) {
+    
+    const newCartProducts = [...this.cartProducts];
+    
+    const index = newCartProducts.findIndex(productInCart => productInCart.id === product.id);
+
+    if (index > -1) {
+      
+      newCartProducts[index].quantity = newCartProducts[index].quantity + amount;
+
+      this.cartProducts = newCartProducts;
+    }
+
+    if (this.cartProducts[index].quantity <= 0) {
+
+      this.removeProduct(product);
+    }
+
+
+    this.updateCartData();
+  }
+
+  private updateCartData(): void {
+
+    this.totalSum  = this.cartProducts.reduce((sum: number, product: CartItem) =>
                                                                             sum + product.price * product.quantity, 0);
 
-    this.quantityCartProducts = this.productsInCart.reduce((sum: number, product: CartItem) =>
+    this.totalQuantity  = this.cartProducts.reduce((sum: number, product: CartItem) =>
                                                                             sum + product.quantity, 0);
   }
 }
