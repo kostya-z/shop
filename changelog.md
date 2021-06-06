@@ -18,3 +18,14 @@
     - BoldDirective;
     - Bootstrap’s styles;
     - Angular Material styles.
+
+## Task 3. Services and DI
+1. Redesigned 'CartService' (added new methods & properties).
+2. Added new 'ConfigOptionsService' (used 'Partial' & '...').
+3. Added new token-service: 'ConstantsService' (used 'useValue').
+4. Added new 'GeneratorService' (useFactory+deps).
+5. Added generator (used function-generator).
+6. Added new token-service: 'LocalStorageService' (used 'window.localStorage'; 'useValue').
+7. Inject this new functional in the 'FirstComponent' (used @Optional()).
+8. Added new directive 'ClickDirective' (@Input(), ElementRef + Renderer2).
+
