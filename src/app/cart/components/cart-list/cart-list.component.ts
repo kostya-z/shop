@@ -6,6 +6,7 @@ import { CartItem } from '../../models/cart.model';
 
 import {CartCommunicatorService } from '../../services/cart-communicator.service';
 
+
 @Component({
   selector: 'app-cart-list',
   templateUrl: './cart-list.component.html',
@@ -16,6 +17,10 @@ export class CartListComponent implements OnInit, OnDestroy {
   productsInCart: Array<CartItem> = [];
   sumCartProducts = 0;
   quantityCartProducts = 0;
+
+  sortOptions = ['name', 'price', 'count'];
+  sortedField: string ='price';
+  isAsc = true;
 
   private removeCartItemSubscription: Subscription | undefined;
 

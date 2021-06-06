@@ -2,10 +2,19 @@
     ProductListComponent ->
 
     <app-product 
-        [products]="products"
+        
+        [products]="productsObservable | async"
+
         (productToBuy)="onAddInCart($event)"
     >
 
     </app-product>
 </div>
+<!-- [products] = "products"
+
+[products]="productsObservable | async" 
+[products]="getProductsFromPromise()"
+[products]="productsPromise | async"
+[products]="productsFromPromise"
+-->
 

@@ -36,7 +36,8 @@
     </div> -->
 
     <!-- Material table style -->
-    <table mat-table [dataSource]="products" class="mat-elevation-z8">
+    <table mat-table [dataSource]="productsForTable" class="mat-elevation-z8">
+    <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"> -->
     
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef> Id </th>
@@ -45,12 +46,12 @@
         
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.name | uppercase}} </td>
         </ng-container>
     
         <ng-container matColumnDef="price">
             <th mat-header-cell *matHeaderCellDef> Price </th>
-            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.price | currency:'USD'}} </td>
         </ng-container>
 
         <ng-container matColumnDef="actions">

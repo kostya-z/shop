@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+// import { CommonModule } from '@angular/common';
 import {MatTableModule} from '@angular/material/table';
-
+import { SharedModule } from '../shared/shared.module';
 import { ProductComponent } from './components/product/product.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 
 @NgModule({
   declarations: [ProductComponent, ProductListComponent],
   imports: [
-    CommonModule, MatTableModule
+    // CommonModule, 
+    SharedModule,
+    MatTableModule
   ],
   exports: [ProductListComponent]
 })

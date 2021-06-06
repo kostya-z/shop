@@ -11,6 +11,7 @@ import { CartModule } from './cart/cart.module';
 import { ProductsModule } from './products/products.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
+// import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     BrowserModule,
+    // FormsModule,
     CartModule,
     ProductsModule,
     BrowserAnimationsModule,

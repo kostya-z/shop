@@ -4,8 +4,8 @@
   
     <div class="panel-heading" >
         
-        Product: Id: {{product?.id}}; Name: {{product?.name}}; 
-        Price: {{product?.price}}$; Q-ty: {{product?.quantity}}
+        Product: Id: {{product?.id}}; Name: {{product?.name | uppercase}}; 
+        Price: {{product?.price | currency:'USD'}}; Q-ty: {{product?.quantity}}
         
         <button class="btn btn-primary"  
                 id="product.id" (click)="onIncreaseCartItem(product)"

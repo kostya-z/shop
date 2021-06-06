@@ -3,20 +3,27 @@ import { CommonModule } from '@angular/common';
 import { HighlightDirective } from './highlight.directive';
 import { BoldDirective} from './bold.directive';
 import { ClickDirectiveDirective } from './directives/click-directive.directive';
+import { OrderByPipe } from './pipes/order-by.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     HighlightDirective,
     BoldDirective,
-    ClickDirectiveDirective
+    ClickDirectiveDirective,
+    OrderByPipe
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
     HighlightDirective,
     BoldDirective,
-    ClickDirectiveDirective
+    ClickDirectiveDirective,
+    OrderByPipe,
+    CommonModule,
+    FormsModule
   ]
 })
 export class SharedModule { }

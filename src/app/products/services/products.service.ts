@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subscriber, of } from 'rxjs';
 
 import { ProductItem } from '../models/product.model';
 
@@ -11,9 +12,25 @@ export class ProductsService {
 
   getProducts(): Array<ProductItem>{
     return[
-      new ProductItem(1, 'Product1', 11, true),
+      new ProductItem(1, 'Product3', 11, true),
       new ProductItem(2, 'Product2', 22, false),
-      new ProductItem(3, 'Product3', 33, true),
+      new ProductItem(3, 'Product1', 33, true),
     ];
+  }
+
+  getProductsAsyncObservable(): Observable<Array<ProductItem>> {
+    return of ([
+      new ProductItem(1, 'Product3', 11, true),
+      new ProductItem(2, 'Product2', 22, false),
+      new ProductItem(3, 'Product1', 33, true),
+    ]);
+  }
+
+  getProductsPromise(): Promise<Array<ProductItem>> {
+    return new Promise  ( (res) =>  res( [
+      new ProductItem(1, 'Product3', 11, true),
+      new ProductItem(2, 'Product2', 22, false),
+      new ProductItem(3, 'Product1', 33, true),
+    ])) ;
   }
 }

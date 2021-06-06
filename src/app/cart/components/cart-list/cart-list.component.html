@@ -5,7 +5,7 @@
 
 <div>
     <div [ngClass]="{segoePrintFont:true}">
-        Q-ty: {{getQuantityCartProducts()}}; Sum: {{getSumCartProducts()}}
+        Q-ty: {{getQuantityCartProducts()}}; Sum: {{getSumCartProducts() | currency:'USD'}}
     </div>
     <br/>
     <div >Cart products list:</div>
@@ -19,10 +19,30 @@
         </button>
     </div>
 
+
+    <div>
+        <div>
+            <label for="sortedField">Sort by:</label>
+            <select [(ngModel)]="sortedField"
+                    name="sortedField"
+            >
+                <option *ngFor="let sortOption of sortOptions"
+                        [value]="sortOption">{{sortOption}}</option>
+            </select>
+
+        </div>
+        <div>
+            <label for="sortDirection">ASC/DESC</label>
+            <input type="checkbox"
+                    [(ngModel)]="isAsc"
+                    name="sortDirection">
+        </div>
+    </div>
+
     <div *ngIf="productsInCart.length > 0; else elseBlock">
        
         <app-cart-item  
-                        *ngFor="let product of productsInCart;"
+                        *ngFor="let product of productsInCart | orderBy:sortedField:isAsc ;"
                         [product]="product"
                         (increaseProduct)="onIncreaseCartItem($event)"
                         (decreaseProduct)="onDecreaseCartItem($event)"

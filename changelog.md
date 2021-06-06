@@ -29,3 +29,8 @@
 7. Inject this new functional in the 'FirstComponent' (used @Optional()).
 8. Added new directive 'ClickDirective' (@Input(), ElementRef + Renderer2).
 
+## Task4. Pipes.
+1. Used pipes: "| currency:'USD'" , "| uppercase".
+2. Added 'OrderByPipe'.
+3. Apply 'OrderByPipe' to the cart.
+4. CommonModule, FormsModule were moved to SharedModule.
