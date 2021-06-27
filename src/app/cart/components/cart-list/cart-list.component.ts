@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap  } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { CartService } from '../../services/cart.service';
@@ -19,13 +20,14 @@ export class CartListComponent implements OnInit, OnDestroy {
   quantityCartProducts = 0;
 
   sortOptions = ['name', 'price', 'count'];
-  sortedField: string ='price';
+  sortedField = 'price';
   isAsc = true;
 
   private removeCartItemSubscription: Subscription | undefined;
 
   constructor(private cartService: CartService,
-              private cartCommunicatorService: CartCommunicatorService)
+              private cartCommunicatorService: CartCommunicatorService,
+              private router: Router)
   { }
 
   ngOnInit(): void {
@@ -68,6 +70,12 @@ export class CartListComponent implements OnInit, OnDestroy {
 
   onClearCart(): void {
     this.cartService.removeAllProducts();
+  }
+
+  onMakeOrder(): void {
+    console.log('order');
+    const link = ['order'];
+    this.router.navigate(link);
   }
 
   getSumCartProducts(): number{

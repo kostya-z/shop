@@ -10,15 +10,15 @@ import { LocalStorage, LocalStorageService } from './../core/services/localStora
   selector: 'app-first-component',
   templateUrl: './first-component.component.html',
   styleUrls: ['./first-component.component.css'],
-  providers:[GeneratorService,
+  providers: [GeneratorService,
     {
       provide: ConstantsService, useValue: ConstantsServiceConst
     },
     {
-        provide: generatedString, useFactory: generatorFactory(10), deps:[GeneratorService]
+        provide: generatedString, useFactory: generatorFactory(10), deps: [GeneratorService]
     },
     {
-      provide: LocalStorageService, useValue: LocalStorage 
+      provide: LocalStorageService, useValue: LocalStorage
     }
 ]
 })
@@ -30,7 +30,7 @@ export class FirstComponentComponent implements OnInit {
   category: CategoryEnum = CategoryEnum.Category2;
   isAvailable = true;
 
-  generatedId: number = -1;
+  generatedId = -1;
 
   constructor(
     @Optional() @Inject(ConstantsService) public constantService2: ConstantModel,
@@ -44,13 +44,13 @@ export class FirstComponentComponent implements OnInit {
 
     console.log(this.generateString);
 
-    this.localStorageService.setValue('keyTest','valueTest');
+    this.localStorageService.setValue('keyTest', 'valueTest');
     console.log(this.localStorageService.getValue('keyTest'));
   }
 
-  //test generator Id
+  // test generator Id
   onGenerateId(): void {
     this.generatedId = this.generatorService.getNewID();
   }
-  
+
 }

@@ -1,3 +1,6 @@
+<!-- <h2>CartListComponent -></h2>
+<router-outlet></router-outlet> -->
+
 <div [ngStyle]="{'font-size':'13px', 'font-family':'Verdana', 'color':'blue'}">
     CartListComponent ->
 </div>
@@ -49,11 +52,24 @@
                         
         >
         </app-cart-item>
+        *****************************************************
+        <div>
+            <button class="btn btn-primary"
+            (click)="onMakeOrder()"
+        >
+            Order
+        </button>
+        </div>
 
     </div>
+
+    
+
     <ng-template #elseBlock>
         <div> The cart is empty!</div>
     </ng-template>
     
-    *****************************************************
+    
 </div>
+
+

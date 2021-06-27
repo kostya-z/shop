@@ -6,9 +6,18 @@
         [products]="productsObservable | async"
 
         (productToBuy)="onAddInCart($event)"
+
+        (productToView)="onViewProduct($event)"
     >
 
     </app-product>
+</div>
+
+<div>
+    Cart state from the localstorage:
+    <div>
+        {{getCartFromLocalStorage()}}
+    </div>
 </div>
 <!-- [products] = "products"
 

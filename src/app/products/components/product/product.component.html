@@ -65,6 +65,13 @@
                     In Cart
                 </button>
 
+                <button class="btn btn-secondary" 
+                    [disabled]="!element.isPresent" 
+                    id="product.id" (click)="onViewProduct(element)"
+                >
+                    View
+                </button>
+
             </td>
         </ng-container>
     

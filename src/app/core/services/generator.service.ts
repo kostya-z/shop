@@ -10,22 +10,22 @@ export class GeneratorService {
 
   constructor() { }
 
-  generate (n: number): string {
-    
+  generate(n: number): string {
+
     let result = '';
-    
+
     const symbolsSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    
+
     for (let index = 0; index < n; index++) {
 
       result += symbolsSet.charAt(Math.floor(Math.random() * symbolsSet.length));
     }
-    
+
     return result;
   }
 
   getNewID(): number {
-    
+
     return this.generatorID.next().value;
   }
 }

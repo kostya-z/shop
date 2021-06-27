@@ -1,23 +1,23 @@
-import { Directive,ElementRef, HostListener, Input, Renderer2  } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, Renderer2  } from '@angular/core';
 
 @Directive({
   selector: '[appClickDirective]'
 })
 export class ClickDirectiveDirective {
-  
-  @Input('appClickDirective') color: string = '';
+
+  @Input('appClickDirective') color = '';
 
   constructor(private el: ElementRef, private render: Renderer2) { }
 
   @HostListener('click')
   onClick(): void {
-      
+
     this.highlightBorder(this.color);
   }
 
   highlightBorder(color: string): void {
 
-    if (color === undefined || color ==='') {
+    if (color === undefined || color === '') {
 
       color = 'red';
     }

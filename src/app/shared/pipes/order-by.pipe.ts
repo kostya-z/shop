@@ -7,7 +7,7 @@ export class OrderByPipe implements PipeTransform {
 
   transform(values: any[], key: string, isAsc: boolean = true): any[] | undefined {
 
-    if(!values) {
+    if (!values) {
       return values;
     }
 

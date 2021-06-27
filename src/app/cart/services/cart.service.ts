@@ -2,17 +2,18 @@ import { Injectable } from '@angular/core';
 
 import { ProductItem } from '../../products/models/product.model';
 import { CartItem } from '../models/cart.model';
+import { LocalStorageService2 } from '../../core/services/localStorageService ';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  private cartProducts : Array<CartItem> = [];
+  private cartProducts: Array<CartItem> = [];
   private totalSum = 0;
   private totalQuantity  = 0;
 
-  constructor() { }
+  constructor(private localStorage: LocalStorageService2) { }
 
   addProduct(product: ProductItem, amount: number = 1): void {
 
@@ -107,13 +108,13 @@ export class CartService {
   }
 
   private changeQuantity(product: CartItem, amount: number) {
-    
+
     const newCartProducts = [...this.cartProducts];
-    
+
     const index = newCartProducts.findIndex(productInCart => productInCart.id === product.id);
 
     if (index > -1) {
-      
+
       newCartProducts[index].quantity = newCartProducts[index].quantity + amount;
 
       this.cartProducts = newCartProducts;
@@ -135,5 +136,7 @@ export class CartService {
 
     this.totalQuantity  = this.cartProducts.reduce((sum: number, product: CartItem) =>
                                                                             sum + product.quantity, 0);
+
+    this.localStorage.setValue('cart', JSON.stringify(this.cartProducts));
   }
 }

@@ -1,7 +1,11 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 
 import { ProductItem } from '../../models/product.model';
-import { Observable, Subscriber, of } from 'rxjs';
+import { Router, ActivatedRoute, ParamMap  } from '@angular/router';
+
+// rxjs
+import { EMPTY, Observable } from 'rxjs';
+import { catchError, switchMap  } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product',
@@ -19,9 +23,19 @@ export class ProductComponent implements OnInit {
   @Output()
   productToBuy: EventEmitter<ProductItem> = new EventEmitter<ProductItem>();
 
+  @Output()
+  productToView: EventEmitter<ProductItem> = new EventEmitter<ProductItem>();
+
   productsForTable: Array<ProductItem> = [];
 
   headers: string[] = ['id', 'name', 'price', 'actions'];
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+
+  ) { }
+
 
   ngOnInit(): void {
 
@@ -30,7 +44,9 @@ export class ProductComponent implements OnInit {
     if (this.products != null) {
       this.productsForTable = this.products;
     }
-        
+
+
+
   }
 
   onBuy(): void {
@@ -40,6 +56,17 @@ export class ProductComponent implements OnInit {
   onAddInCart(product: ProductItem): void {
 
     this.productToBuy.emit(product);
+  }
+
+  onViewProduct(product: ProductItem): void {
+
+    // this.route.paramMap
+    //     .pipe(
+    //       switchMap(async () => product));
+
+    // const link = ['/product', product.id];
+    // this.router.navigate(link);
+    this.productToView.emit(product);
   }
 
 }

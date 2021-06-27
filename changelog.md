@@ -34,3 +34,15 @@
 2. Added 'OrderByPipe'.
 3. Apply 'OrderByPipe' to the cart.
 4. CommonModule, FormsModule were moved to SharedModule.
+
+## Task5. Routing.
+1. Route '/products-list ' to 'ProductListComponent'.
+2. Route '/product/:productID' to 'ProductViewComponent'
+3. Route '/cart' to 'CartListComponent'
+4. Route '/order' to ProcessOrderComponent. + CanLoad/CanActivate Guard (IsCartEmptyGuard) 
+5. Implemented Admin pannel (Login page + user roles; /admin + CanActivate Guard;
+    /admin/products; 
+    /admin/product/add; 
+    /admin/product/edit/:productID + resolve guard + CanDeactivate Guard;
+    /admin/orders
+6. Save Cart state also in the localstorage.
